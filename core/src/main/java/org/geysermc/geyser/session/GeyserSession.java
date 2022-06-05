@@ -928,7 +928,7 @@ public class GeyserSession implements GeyserConnection, CommandSender {
                 UUID uuid = protocol.getProfile().getId();
                 if (uuid == null) {
                     // Set what our UUID *probably* is going to be
-                    if (remoteAuthType == AuthType.FLOODGATE) {
+                    if ((Long.parseLong(authData.xuid()) != 0L) && remoteAuthType == AuthType.FLOODGATE) {
                         uuid = new UUID(0, Long.parseLong(authData.xuid()));
                     } else {
                         uuid = UUID.nameUUIDFromBytes(("OfflinePlayer:" + protocol.getProfile().getName()).getBytes(StandardCharsets.UTF_8));
